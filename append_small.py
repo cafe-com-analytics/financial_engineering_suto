@@ -11,7 +11,8 @@ files = glob('data/raw/*.csv')
 
 for f in files:
   df = pd.read_csv(f)
-  symbol = f.split('/')[-1].split('.')[0]
+  symbol = f.split('/')[-1].split('\\')[-1].split('.')[0]
+  # .split('.')[0]
   symbols.append(symbol)
 
 small_symbols = {'MMM', 'ABT', 'ABBV', 'ACN', 'ATVI', 'ADBE', 'AMD', 'AAP', 'AES',

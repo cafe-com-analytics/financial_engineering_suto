@@ -1,5 +1,6 @@
 # standard
 *.csv
+*.pqt
 *DS_Store
 
 # enviroments
