@@ -1,0 +1,7 @@
+# standard
+*.csv
+*DS_Store
+
+# enviroments
+venv
+.vscode
