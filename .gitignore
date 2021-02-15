@@ -2,6 +2,7 @@
 *.csv
 *.pqt
 *DS_Store
+data/raw/backup
 
 # enviroments
 venv
