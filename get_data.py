@@ -44,22 +44,28 @@ symbols = ['MMM','ABT','ABBV','ACN','ATVI','AYI','ADBE','AMD','AAP','AES','AET',
     'VMC','WMT','WBA','DIS','WM','WAT','WEC','WFC','HCN','WDC','WU','WRK','WY','WHR','WMB',
     'WLTW','WYN','WYNN','XEL','XRX','XLNX','XL','XYL','YUM','ZBH','ZION','ZTS']
 
+
 symbols.append('SPY')
 
 if not os.path.exists('data/raw'):
   os.mkdir('data/raw')
 
 lst_delist = []
+ok = nok = 0
 
 for symbol in symbols:
   if not os.path.exists(f"data/raw/{symbol}.csv"):
-    data = yf.download(symbol, start="2016-01-01", end="2020-12-31")
+    data = yf.download(symbol, start="2016-01-01", end="2021-02-12")
     if data.size > 0:
       data.to_csv(f"data/raw/{symbol}.csv")
+      ok += 1
     else:
       print("Not saving...")
+      nok += 1
       lst_delist.append(symbol)
 
+print(f"""ok: {ok}
+nok: {nok}""")
 
 for symbol in symbols:
   try:
