@@ -77,7 +77,8 @@ if __name__ == "__main__":
 		symbols = ''
 	else:
 		symbols = symbols_list.split(',')
-		symbols = [item.strip() for item in symbols_list]
+		if len(symbols) > 1:
+			symbols = [item.strip() for item in symbols_list]
 
 	try:
 		qty = int(input("Insert the quantity of stocks: "))
@@ -150,5 +151,8 @@ full_df = full_df[['Date', 'Name', 'Open', 'High', 'Low', 'Close', 'Adj Close', 
 
 today_var = str(date.today()).replace('-', '_')
 full_df.to_parquet(f'data/interim/data_acquired_{today_var}.pqt', index=False)
+
+df_close_prices = pd.pivot_table(full_df, values='Close', columns=['Name'], index=['Date'])
+df_close_prices.to_parquet(f'data/interim/data_acquired_close_{today_var}.pqt', index=False)
 
 
